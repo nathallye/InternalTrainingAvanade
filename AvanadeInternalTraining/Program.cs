@@ -6,6 +6,8 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+// injetando a base de dados
+builder.Services.AddDbContext<AvanadeInternalTraining.Context.AvanadeInternalTrainingContext>();
 
 // CORS
 builder.Services.AddCors(options =>
