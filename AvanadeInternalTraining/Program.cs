@@ -9,6 +9,7 @@ builder.Services.AddSwaggerGen();
 // injetando a base de dados
 builder.Services.AddDbContext<Data.Context.AvanadeInternalTrainingContext>();
 
+builder.Services.AddScoped<Data.Interfaces.IClassRepository, Data.Repository.ClassRepository>();
 builder.Services.AddScoped<Data.Interfaces.IStudentRepository, Data.Repository.StudentRepository>();
 
 // CORS

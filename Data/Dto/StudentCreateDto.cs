@@ -1,6 +1,6 @@
 ﻿namespace Data.Dto
 {
-    internal class StudentCreateDto
+    public class StudentCreateDto
     {
         public int Id { get; set; }
         public string Name { get; set; } = null!;

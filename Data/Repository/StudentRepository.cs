@@ -24,82 +24,86 @@ namespace Data.Repository
             }).ToList();
         }
 
-        /*public TurmaDto PorId(int id)
+        public StudentDto GetOne(int id)
         {
-            return (from t in _contexto.Turmas
+            return (from t in _context.Students
                     where t.Id == id
-                    select new Dto.TurmaDto()
+                    select new StudentDto()
                     {
-                        Chave = t.Id,
-                        Nome = t.Nome
+                        Key = t.Id,
+                        Name = t.Name,
+                        LastName = t.LastName
+
                     })
                     ?.FirstOrDefault()
-                    ?? new TurmaDto();
+                    ?? new StudentDto();
         }
 
-        public int Atualizar(TurmaCadastrarDto cadastrarDto)
+        public int Create(StudentCreateDto student)
         {
-            Entidades.Turma turmaEntidadeBanco =
-                (from c in _contexto.Turmas
-                 where c.Id == cadastrarDto.Id
+            StudentEntity studentEntity = new StudentEntity()
+            {
+                Name = student.Name,
+                LastName = student.LastName,
+                BirthDate = student.BirthDate,
+                Matriculation = student.Matriculation,
+                Document = student.Document
+            };
+
+            _context.ChangeTracker.Clear();
+            _context.Students.Add(studentEntity);
+            return _context.SaveChanges();
+        }
+
+        public int Update(StudentCreateDto student)
+        {
+            StudentEntity studentEntityDB =
+                (from c in _context.Students
+                 where c.Id == student.Id
                  select c)
                  ?.FirstOrDefault()
-                 ?? new Entidades.Turma();
+                 ?? new StudentEntity();
 
             // TRATAMENTO DE ERRO
             // CASO NÃO ACHE O ID PARA ATUALIZAR, RETORNA VALOR 0. 
             // OU SEJA, NÃO ATUALIZOU NENHUM CADASTRO
-            if (turmaEntidadeBanco == null || DBNull.Value.Equals(turmaEntidadeBanco.Id) || turmaEntidadeBanco.Id == 0)
+            if (studentEntityDB == null || DBNull.Value.Equals(studentEntityDB.Id) || studentEntityDB.Id == 0)
             {
                 return 0;
             }
 
-            Entidades.Turma turmaEntidade = new Entidades.Turma()
+            StudentEntity studentEntity = new StudentEntity()
             {
-                Nome = cadastrarDto.Nome,
-                Descricao = cadastrarDto.Descricao,
-                PeriodoInicio = cadastrarDto.PeriodoInicio,
-                PeriodoFim = cadastrarDto.PeriodoFim
+                Name = student.Name,
+                LastName = student.LastName,
+                BirthDate = student.BirthDate,
+                Matriculation = student.Matriculation,
+                Document = student.Document
             };
 
-            _contexto.ChangeTracker.Clear();
-            _contexto.Turmas.Add(turmaEntidade);
-            return _contexto.SaveChanges();
+            _context.ChangeTracker.Clear();
+            _context.Students.Add(studentEntity);
+            return _context.SaveChanges();
         }
 
-        public int Cadastrar(TurmaCadastrarDto cadastrarDto)
+        public int Delete(int Id)
         {
-            Entidades.Turma turmaEntidade = new Entidades.Turma()
-            {
-                Nome = cadastrarDto.Nome,
-                Descricao = cadastrarDto.Descricao,
-                PeriodoInicio = cadastrarDto.PeriodoInicio,
-                PeriodoFim = cadastrarDto.PeriodoFim
-            };
-
-            _contexto.ChangeTracker.Clear();
-            _contexto.Turmas.Add(turmaEntidade);
-            return _contexto.SaveChanges();
-        }
-
-        public int Excluir(int Id)
-        {
-            Entidades.Turma turmaEntidadeBanco =
-                (from c in _contexto.Turmas
+            StudentEntity studentEntityDB =
+                (from c in _context.Students
                  where c.Id == Id
                  select c).FirstOrDefault();
 
             // TRATAMENTO DE ERRO
             // CASO NÃO ACHE O ID PARA ATUALIZAR, RETORNA VALOR 0. 
             // OU SEJA, NÃO ATUALIZOU NENHUM CADASTRO
-            if (turmaEntidadeBanco == null || DBNull.Value.Equals(turmaEntidadeBanco.Id) || turmaEntidadeBanco.Id == 0)
+            if (studentEntityDB == null || DBNull.Value.Equals(studentEntityDB.Id) || studentEntityDB.Id == 0)
             {
                 return 0;
             }
 
-            _contexto.ChangeTracker.Clear();
-            _contexto.Turmas.Remove(turmaEntidadeBanco);
-            return _contexto.SaveChanges();
-        }*/
+            _context.ChangeTracker.Clear();
+            _context.Students.Remove(studentEntityDB);
+            return _context.SaveChanges();
+        }
     }
 }
