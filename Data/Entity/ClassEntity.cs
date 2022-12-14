@@ -1,8 +1,8 @@
-﻿namespace AvanadeInternalTraining.Entity
+﻿namespace Data.Entity
 {
     public class ClassEntity
     {
-        public int Id { get; set; } 
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public DateTime InitialPeriod { get; set; }

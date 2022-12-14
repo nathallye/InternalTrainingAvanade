@@ -1,7 +1,8 @@
-﻿using AvanadeInternalTraining.Entity;
+﻿using Data.Entity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
-namespace AvanadeInternalTraining.Context
+namespace Data.Context
 {
     public partial class AvanadeInternalTrainingContext : DbContext
     {
