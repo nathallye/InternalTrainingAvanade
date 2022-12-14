@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33110.190
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvanadeInternalTraining", "AvanadeInternalTraining\AvanadeInternalTraining.csproj", "{91B39FE0-2C52-4693-B41E-D5DE94A22A60}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{91B39FE0-2C52-4693-B41E-D5DE94A22A60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91B39FE0-2C52-4693-B41E-D5DE94A22A60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91B39FE0-2C52-4693-B41E-D5DE94A22A60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91B39FE0-2C52-4693-B41E-D5DE94A22A60}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7A06EE59-A8D2-4DE9-B52C-ECE4421D7C2E}
+	EndGlobalSection
+EndGlobal
