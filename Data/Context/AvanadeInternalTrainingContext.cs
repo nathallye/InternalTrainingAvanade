@@ -1,4 +1,4 @@
-﻿using Data.Entity;
+﻿using Data.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 

@@ -1,6 +1,6 @@
 ﻿using Data.Context;
 using Data.Dto;
-using Data.Entity;
+using Data.Entities;
 using Data.Interfaces;
 
 namespace Data.Repository

@@ -19,7 +19,7 @@ namespace AvanadeInternalTraining.Controllers
 
         [HttpGet]
         [Route("GelAll")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<Data.Entity.StudentEntity>))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<Data.Entities.StudentEntity>))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public IActionResult GelAll()
         {
@@ -46,7 +46,7 @@ namespace AvanadeInternalTraining.Controllers
 
         [HttpGet]
         [Route("GetOne/{id}")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Data.Entity.StudentEntity))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Data.Entities.StudentEntity))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public IActionResult PorId(int id)
         {

@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Text;
 using System.Data;
 using Dapper;
+using Data.Interfaces;
 
 namespace AvanadeInternalTraining.Controllers
 {
@@ -13,17 +14,23 @@ namespace AvanadeInternalTraining.Controllers
     public class ClassesController : ControllerBase
     {
         private readonly IConfiguration _configuration;
+        private IClassRepository @object;
 
         public ClassesController(IConfiguration configuration)
         {
             _configuration = configuration;
         }
 
+        public ClassesController(IClassRepository @object)
+        {
+            this.@object = @object;
+        }
+
         [HttpGet]
         [Route("GetAll")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<Data.Entity.ClassEntity>))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<Data.Entities.ClassEntity>))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IActionResult GelAll()
+        public IActionResult GetAll()
         {
             try
             {
@@ -50,12 +57,12 @@ namespace AvanadeInternalTraining.Controllers
                 // capturamos o retorno do SELECT
                 SqlDataReader returnSelect = cmd.ExecuteReader();   
 
-                List<Data.Entity.ClassEntity> classes = new List<Data.Entity.ClassEntity>();
+                List<Data.Entities.ClassEntity> classes = new List<Data.Entities.ClassEntity>();
 
                 // vamos ler o retorno e fazer o parse
                 while (returnSelect.Read())
                 {
-                    classes.Add(new Data.Entity.ClassEntity()
+                    classes.Add(new Data.Entities.ClassEntity()
                     {
                         Id = Convert.ToInt32(returnSelect["Id"] ?? "0"),
                         Name = returnSelect.GetString("Name"),
@@ -91,7 +98,7 @@ namespace AvanadeInternalTraining.Controllers
 
         [HttpGet]
         [Route("GelAllDapper")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<Data.Entity.ClassEntity>))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<Data.Entities.ClassEntity>))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public IActionResult GelAllDapper()
         {
@@ -112,7 +119,7 @@ namespace AvanadeInternalTraining.Controllers
                 SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("Sql"));
 
                 // criamos uma lista que vai receber o parse da query strCommand
-                List<Data.Entity.ClassEntity> classes = connection.Query<Data.Entity.ClassEntity>(strCommand.ToString()).ToList();
+                List<Data.Entities.ClassEntity> classes = connection.Query<Data.Entities.ClassEntity>(strCommand.ToString()).ToList();
 
                 return base.Ok(classes);
             }
@@ -124,7 +131,7 @@ namespace AvanadeInternalTraining.Controllers
 
         [HttpGet]
         [Route("GetOne/{Id}")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Data.Entity.ClassEntity))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Data.Entities.ClassEntity))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public IActionResult GelOne(int Id)
         {
@@ -135,8 +142,8 @@ namespace AvanadeInternalTraining.Controllers
                 var dynamicParameters = new DynamicParameters();
                 dynamicParameters.Add("@Id", Id);
 
-                Data.Entity.ClassEntity classForId = 
-                    connection.Query<Data.Entity.ClassEntity>(
+                Data.Entities.ClassEntity classForId = 
+                    connection.Query<Data.Entities.ClassEntity>(
                         "Select Id, Name From Classes Where Id = @Id", dynamicParameters
                         ).FirstOrDefault();
                 
@@ -152,7 +159,7 @@ namespace AvanadeInternalTraining.Controllers
         [Route("Create")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(int))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IActionResult Create(Data.Entity.ClassEntity newClass)
+        public IActionResult Create(Data.Entities.ClassEntity newClass)
         {
             try
             {
@@ -175,7 +182,7 @@ namespace AvanadeInternalTraining.Controllers
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(int))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [Route("Update/{id}")]
-        public IActionResult Update(Data.Entity.ClassEntity classUpdate)
+        public IActionResult Update(Data.Entities.ClassEntity classUpdate)
         {
             try
             {
@@ -201,7 +208,7 @@ namespace AvanadeInternalTraining.Controllers
         [Route("Delete/{id}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(int))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IActionResult Delete(Data.Entity.ClassEntity classDelete)
+        public IActionResult Delete(Data.Entities.ClassEntity classDelete)
         {
             try
             {

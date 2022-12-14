@@ -5,7 +5,9 @@ VisualStudioVersion = 17.4.33110.190
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AvanadeInternalTraining", "AvanadeInternalTraining\AvanadeInternalTraining.csproj", "{91B39FE0-2C52-4693-B41E-D5DE94A22A60}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{AF31B41A-D9DF-4DBB-8EC3-00D01B7F392E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data", "Data\Data.csproj", "{AF31B41A-D9DF-4DBB-8EC3-00D01B7F392E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{0591A9D6-5F13-44AA-99E8-B9832CBB0FC9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{AF31B41A-D9DF-4DBB-8EC3-00D01B7F392E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AF31B41A-D9DF-4DBB-8EC3-00D01B7F392E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AF31B41A-D9DF-4DBB-8EC3-00D01B7F392E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0591A9D6-5F13-44AA-99E8-B9832CBB0FC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0591A9D6-5F13-44AA-99E8-B9832CBB0FC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0591A9D6-5F13-44AA-99E8-B9832CBB0FC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0591A9D6-5F13-44AA-99E8-B9832CBB0FC9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
